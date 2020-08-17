@@ -1,0 +1,39 @@
+Initial Setup:
+ * Strating hadoop
+      $ su hduser
+      $ start-dfs.sh
+      $ start-yarn.sh
+ * Start Hive
+      $cd /usr/local/apache-hive-2.1.0-bin/bin
+      $hive
+* Create Table for dataset and load CSV file
+  CREATE schema IF NOT EXISTS bda;
+  CREATE external table IF NOT EXISTS bda.tab1
+  (category STRING,subcat STRING,splatform STRING,con int,percentage float)
+  ROW FORMAT delimited
+  FIELDS terminated by ','
+  STORED as textfile
+  LOCATION 'file_path';
+* to view contents of csv
+  select * from bda.tab1;
+* Query1:Query to find out what universities in the data set collection are addicted most to the social
+         Media
+         hive>select subcat, sum(con) as sc from bdp2.sm2 where category=”University” group by
+         subcat order by sc desc limit 15;
+* Query 2:Query to find out which social media platform do female respondents use the most
+          hive>select splatform, max(con) as mc from bdp2.sm2 where category=”Gender” and
+          subcat=”Female respondents” group by splatform order by mc desc limit 1;
+* Query 3:Query to find which age group is addicted social media the most
+          hive>select subcat, sum(con) as sc from bdp2.sm2 where subcat like ‘age%’ group by
+          subact order by sc desc;
+* Query 4:Query to find out which social media platform male respondents use the most
+          hive>select splatform, max(con) as mc from bdp2.sm2 where category=”Gender” and
+          subcat=”Male respondents” group by splatform order by mc limit 1;
+* Query 5:Query to find out which social media platform is most commonly used and least commonly
+          used among mobile users
+          hive>select max(con) as mc, splatform from bdp2.sm2 where category=”Mobile” group
+          by splatform order by mc desc limit 1;
+* Query 6:Query to find out which country uses maximum number of social media platforms provided
+          hive>select subcat, sum(con) as sc from bdp2.sm2 where category=”Country” group by
+          subcat order by sc desc; 
+Close hadoop
