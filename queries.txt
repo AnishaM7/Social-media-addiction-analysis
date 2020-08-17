@@ -1,9 +1,9 @@
 Initial Setup:
- * Strating hadoop
+ > Strating hadoop
       $ su hduser
       $ start-dfs.sh
       $ start-yarn.sh
- * Start Hive
+ > Start Hive
       $cd /usr/local/apache-hive-2.1.0-bin/bin
       $hive
 * Create Table for dataset and load CSV file
@@ -14,7 +14,7 @@ Initial Setup:
   FIELDS terminated by ','
   STORED as textfile
   LOCATION 'file_path';
-* to view contents of csv
+* To view contents of csv
   select * from bda.tab1;
 * Query1:Query to find out what universities in the data set collection are addicted most to the social
          Media
