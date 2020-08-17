@@ -36,4 +36,4 @@ Initial Setup:
 * Query 6:Query to find out which country uses maximum number of social media platforms provided
           hive>select subcat, sum(con) as sc from bdp2.sm2 where category=”Country” group by
           subcat order by sc desc; 
-Close hadoop
+Close hadoop.
